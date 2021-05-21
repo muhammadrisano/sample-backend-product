@@ -6,7 +6,7 @@ const cors = require('cors')
 const app = express()
 const createError = require('http-errors')
 
-const PORT = 4000
+const PORT = process.env.PORT || 4000
 
 app.use(morgan('dev'))
 app.use(express.json())

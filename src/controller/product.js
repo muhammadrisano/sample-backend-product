@@ -13,6 +13,21 @@ exports.getProducts = (req, res, next) => {
       next(error)
     })
 }
+
+exports.getProductsById = (req, res, next)=>{
+  const id = req.params.id
+  productModel.getProductsById(id)
+  .then((result)=>{
+    if(result.length < 1){
+      const error = new createError[404]
+      next(error)
+    }else{
+      const product = result[0]
+      helpers.response(res, product, 200)
+    }
+  })
+
+}
 exports.insertProducts = (req, res, next) => {
   const { name, price, size, description } = req.body
   const data = {

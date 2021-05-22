@@ -1,7 +1,7 @@
 const connection = require('../configs/db/mysql')
 exports.getProducts=()=>{
   return new Promise((resolve, reject)=>{
-    connection.query("SELECT * FROM products", (err, result) => {
+    connection.query("SELECT * FROM products ORDER BY id desc", (err, result) => {
       if (!err) {
         resolve(result)
       } else {
@@ -35,6 +35,18 @@ exports.updateProducts = (id, data) => {
 exports.deleteProducts = (id) => {
   return new Promise((resolve, reject) => {
     connection.query("DELETE FROM products WHERE id = ?", id, (err, result) => {
+      if (!err) {
+        resolve(result)
+      } else {
+        reject(new Error(err))
+      }
+    })
+  })
+}
+
+exports.getProductsById =(id)=>{
+  return new Promise((resolve, reject) => {
+    connection.query("SELECT * FROM products WHERE id = ?",id , (err, result) => {
       if (!err) {
         resolve(result)
       } else {

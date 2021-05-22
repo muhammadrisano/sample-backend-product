@@ -14,7 +14,8 @@ app.use(cors())
 app.use(express.urlencoded({extended: false}))
 app.use('/v1', router)
 
-
+// ns1.idwebhost.id
+// ns2.idwebhost.id
 app.use('*', (req, res, next) => {
   const error = new createError.NotFound()
   next(error)
